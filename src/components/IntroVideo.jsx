@@ -6,7 +6,7 @@ const IntroVideo = () => {
   const videoRef = useRef(null);
 
   const [inView, setInView] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
 
@@ -35,6 +35,14 @@ const IntroVideo = () => {
     return () => obs.disconnect();
   }, []);
 
+  // Sync muted state imperatively — React's `muted` prop doesn't update after mount
+  useEffect(() => {
+    const vid = videoRef.current;
+    if (!vid) return;
+    vid.muted = isMuted;
+    vid.volume = isMuted ? 0 : 1;
+  }, [isMuted]);
+
   useEffect(() => {
     const vid = videoRef.current;
     if (!vid) return;
@@ -43,7 +51,8 @@ const IntroVideo = () => {
     } else {
       vid.pause();
       vid.currentTime = 0;
-      setIsMuted(true);
+      // Only reset mute when video leaves the viewport entirely
+      if (!inView) setIsMuted(true);
     }
   }, [inView, isHovered]);
 
@@ -190,7 +199,7 @@ const IntroVideo = () => {
                 ref={videoRef}
                 src="/intro_video.mp4"
                 loop
-                muted={isMuted}
+                muted
                 controls={false}
                 playsInline
                 preload="auto"
@@ -218,10 +227,10 @@ const IntroVideo = () => {
                 aria-label={isMuted ? 'Unmute' : 'Mute'}
                 style={{
                   position: 'absolute',
-                  bottom: isMobile ? '-3%' : '-1%',
-                  right: isMobile ? '1%' : '1.5%',
-                  width: isMobile ? '22px' : '48px',
-                  height: isMobile ? '22px' : '48px',
+                  bottom: '2%',
+                  right: '2%',
+                  width: isMobile ? '28px' : '56px',
+                  height: isMobile ? '28px' : '56px',
                   borderRadius: '50%',
                   border: 'none',
                   background: 'rgba(0,0,0,0.6)',
@@ -253,6 +262,7 @@ const IntroVideo = () => {
                   </svg>
                 )}
               </button>
+
 
               <motion.div style={{
                 position: 'absolute', inset: '-20%',

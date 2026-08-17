@@ -6,7 +6,7 @@ const experiences = [
     id: 'exp-1',
     logo: <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '22px', letterSpacing: '-0.5px', color: 'rgba(255,255,255,0.9)' }}>Freelance</span>,
     date: '2023 – Present',
-    role: 'UI/UX Designer',
+    role: 'Graphic Designer',
     description: 'Designing end-to-end digital experiences for clients across e-commerce, healthcare, food delivery, and interior design. My focus is on turning complex requirements into clean, intuitive interfaces that drive real business results.'
   },
   {

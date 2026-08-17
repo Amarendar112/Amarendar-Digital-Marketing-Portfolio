@@ -8,8 +8,9 @@ import CustomCursor from './components/CustomCursor';
 const Projects      = lazy(() => import('./components/Projects'));
 const Experience    = lazy(() => import('./components/Experience'));
 const Certifications = lazy(() => import('./components/Certifications'));
-const BeyondPixels  = lazy(() => import('./components/BeyondPixels'));
-const Connect       = lazy(() => import('./components/Connect'));
+const BeyondPixels    = lazy(() => import('./components/BeyondPixels'));
+const GraphicDesigns  = lazy(() => import('./components/GraphicDesigns'));
+const Connect         = lazy(() => import('./components/Connect'));
 const Footer        = lazy(() => import('./components/Footer'));
 
 // Minimal fallback — invisible so the page feels instant
@@ -24,15 +25,15 @@ function App() {
         <Hero />
         <div className="gradient-line" />
         <Suspense fallback={<Fallback />}>
+          <GraphicDesigns />
+        </Suspense>
+        <div className="gradient-line" />
+        <Suspense fallback={<Fallback />}>
           <Projects />
         </Suspense>
         <div className="gradient-line" />
         <Suspense fallback={<Fallback />}>
           <Experience />
-        </Suspense>
-        <div className="gradient-line" />
-        <Suspense fallback={<Fallback />}>
-          <Certifications />
         </Suspense>
         <div className="gradient-line" />
         <Suspense fallback={<Fallback />}>

@@ -210,7 +210,8 @@ const ScatteredCardsSection = () => {
 const Hero = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [revealed, setRevealed] = useState(false);
-  const [role, setRole] = useState("UI / UX Designer");
+  const [displayedText, setDisplayedText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
   const [cursorVisible, setCursorVisible] = useState(true);
   const { x, y } = useMousePosition();
   const containerRef = useRef(null);
@@ -304,14 +305,44 @@ const Hero = () => {
   };
 
   useEffect(() => {
-    const roles = ["UI / UX Designer", "Frontend developer", "Product Designer"];
-    let i = 0;
-    const interval = setInterval(() => {
-      i = (i + 1) % roles.length;
-      setRole(roles[i]);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
+    const fullText = "Graphic Designer";
+    const typeSpeed = 80;    // ms per character when typing
+    const deleteSpeed = 45;  // ms per character when deleting
+    const pauseAfterType = 1800;  // pause at full text
+    const pauseAfterDelete = 500; // pause when empty
+
+    let timeout;
+    const tick = () => {
+      setDisplayedText(prev => {
+        if (!isDeleting) {
+          if (prev.length < fullText.length) {
+            timeout = setTimeout(tick, typeSpeed);
+            return fullText.slice(0, prev.length + 1);
+          } else {
+            // Finished typing — pause then start deleting
+            timeout = setTimeout(() => {
+              setIsDeleting(true);
+            }, pauseAfterType);
+            return prev;
+          }
+        } else {
+          if (prev.length > 0) {
+            timeout = setTimeout(tick, deleteSpeed);
+            return prev.slice(0, prev.length - 1);
+          } else {
+            // Finished deleting — pause then start typing
+            timeout = setTimeout(() => {
+              setIsDeleting(false);
+            }, pauseAfterDelete);
+            return prev;
+          }
+        }
+      });
+    };
+
+    timeout = setTimeout(tick, typeSpeed);
+    return () => clearTimeout(timeout);
+  }, [isDeleting]);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -351,22 +382,33 @@ const Hero = () => {
           }}>
             Hi, I&apos;m <strong style={{ fontWeight: 800 }}>Jaalthari Amarendar</strong>
           </h1>
-          <AnimatePresence mode="wait">
-            <motion.p
-              key={role}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          <p style={{
+              fontFamily: "'Outfit', sans-serif",
+              fontSize: 'clamp(26px, 4.2vw, 48px)',
+              fontWeight: 600, color: '#4f8ef7', marginTop: '10px',
+              letterSpacing: '-0.01em', minHeight: '1.3em',
+              display: 'inline-flex', alignItems: 'center', gap: '2px',
+            }}
+          >
+            {displayedText}
+            <span
               style={{
-                fontFamily: "'Outfit', sans-serif",
-                fontSize: 'clamp(26px, 4.2vw, 48px)',
-                fontWeight: 600, color: '#4f8ef7', marginTop: '10px', letterSpacing: '-0.01em',
+                display: 'inline-block',
+                width: '3px',
+                height: '0.85em',
+                background: '#4f8ef7',
+                borderRadius: '2px',
+                marginLeft: '2px',
+                animation: 'cursorBlink 0.75s step-end infinite',
               }}
-            >
-              {role}
-            </motion.p>
-          </AnimatePresence>
+            />
+          </p>
+          <style>{`
+            @keyframes cursorBlink {
+              0%, 100% { opacity: 1; }
+              50% { opacity: 0; }
+            }
+          `}</style>
         </div>
 
         {/* WebGL liquid image */}

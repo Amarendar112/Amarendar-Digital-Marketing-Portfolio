@@ -10,6 +10,38 @@ import dengueImg from '../assets/dengue-detection-preview.webp';
 
 const projects = [
   {
+    id: 'doctor-ui',
+    title: 'Healthcare | Doctor UI',
+    description:
+      'Empowering healthcare with innovative and accessible interface design. The system prioritises trust and clarity to connect patients and doctors digitally.',
+    caseStudyLink: 'https://doctor-appointment-case-study.vercel.app/',
+    caseStudyLabel: 'View Case Study',
+    link: 'https://www.behance.net/gallery/208451819/Empowering-Healthcare-Innovative-Doctor-UI-Design/modules/1184015719',
+    linkLabel: 'View Design',
+    image: doctorUiImg,
+    tag: 'UI Design',
+  },
+  {
+    id: 'quickslices-pizza-app',
+    title: 'Quickslices Pizza App',
+    description:
+      'Quickslice: Order fresh, hot pizza and get it delivered fast with just a few taps.',
+    link: 'https://www.behance.net/gallery/218576355/Food-delivery/modules/1245613437',
+    linkLabel: 'View Design',
+    image: quickslicesImg,
+    tag: 'App Design',
+  },
+  {
+    id: 'zomato-redesign',
+    title: 'Zomato Redesign',
+    description:
+      'A complete UX redesign of the Zomato mobile app, reimagining the discovery and ordering flow to reduce friction and increase user delight at every touchpoint.',
+    link: 'https://www.behance.net/gallery/244240063/Zomato-Redesign',
+    linkLabel: 'View Design',
+    image: zomatoImg,
+    tag: 'UX Design',
+  },
+  {
     id: 'trenzly',
     title: 'Trenzly',
     description:
@@ -31,7 +63,7 @@ const projects = [
   },
   {
     id: 'dengue-detection',
-    title: 'Ai dengue detection using cbc data with decision tree algorithm.',
+    title: 'AI Dengue Detection Using CBC Data with Decision Tree Algorithm',
     description:
       'An AI-powered dengue detection system using CBC data and Decision Tree algorithms to predict positive or negative dengue cases with fast and accurate analysis',
     link: 'https://dengue-detection-ai.onrender.com',
@@ -39,39 +71,8 @@ const projects = [
     image: dengueImg,
     tag: 'AI & Healthcare',
   },
-  {
-    id: 'quickslices-pizza-app',
-    title: 'Quickslices Pizza App',
-    description:
-      'Quickslice: Order fresh, hot pizza and get it delivered fast with just a few taps.',
-    link: 'https://www.behance.net/gallery/218576355/Food-delivery/modules/1245613437',
-    linkLabel: 'View Design',
-    image: quickslicesImg,
-    tag: 'App Design',
-  },
-  {
-    id: 'doctor-ui',
-    title: 'Healthcare | Doctor UI',
-    description:
-      'Empowering healthcare with innovative and accessible interface design. The system prioritis trust and clarity to connect patients and doctors digitally.',
-    caseStudyLink: '/CuraConnect_Case_Study.html',
-    caseStudyLabel: 'View Case Study',
-    link: 'https://www.behance.net/gallery/208451819/Empowering-Healthcare-Innovative-Doctor-UI-Design/modules/1184015719',
-    linkLabel: 'View Design',
-    image: doctorUiImg,
-    tag: 'UI Design',
-  },
-  {
-    id: 'zomato-redesign',
-    title: 'Zomato Redesign',
-    description:
-      'A complete UX redesign of the Zomato mobile app, reimagining the discovery and ordering flow to reduce friction and increase user delight at every touchpoint.',
-    link: 'https://www.behance.net/gallery/244240063/Zomato-Redesign',
-    linkLabel: 'View Design',
-    image: zomatoImg,
-    tag: 'UX Design',
-  },
 ];
+
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -220,6 +221,91 @@ const TiltCard = ({ project, index }) => {
   );
 };
 
+/* ── Featured Split Card (Doctor UI) ─────────────── */
+const FeaturedCard = ({ project }) => {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+      className={`featured-card ${hovered ? 'is-hovered' : ''}`}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* LEFT — Design Preview */}
+      <div className="featured-card__left">
+        <div className="featured-card__image-wrap">
+          <img
+            src={project.image}
+            alt={`${project.title} preview`}
+            className="featured-card__image"
+            style={{
+              transform: hovered ? 'scale(1.04)' : 'scale(1)',
+              transition: 'transform 0.6s cubic-bezier(0.4,0,0.2,1)',
+            }}
+          />
+          <div className="featured-card__image-overlay" />
+          {/* Design Link Badge */}
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="featured-card__design-badge"
+          >
+            <Layers size={13} />
+            View Design
+            <ArrowUpRight size={12} />
+          </a>
+        </div>
+      </div>
+
+      {/* RIGHT — Case Study Info */}
+      <div className="featured-card__right">
+        <div className="featured-card__right-inner">
+          <div className="featured-card__meta">
+            <span className="chip" style={{ fontSize: '11px', padding: '3px 9px' }}>
+              {project.tag}
+            </span>
+            <span className="featured-card__badge">Featured Case Study</span>
+          </div>
+
+          <h3 className="featured-card__title">{project.title}</h3>
+
+          <p className="featured-card__desc">{project.description}</p>
+
+          <div className="featured-card__highlights">
+            <div className="featured-card__highlight-item">
+              <span className="featured-card__highlight-num">3</span>
+              <span className="featured-card__highlight-label">Core User Flows</span>
+            </div>
+            <div className="featured-card__highlight-item">
+              <span className="featured-card__highlight-num">40+</span>
+              <span className="featured-card__highlight-label">UI Screens</span>
+            </div>
+            <div className="featured-card__highlight-item">
+              <span className="featured-card__highlight-num">UX</span>
+              <span className="featured-card__highlight-label">Research Driven</span>
+            </div>
+          </div>
+
+          <a
+            href={project.caseStudyLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="featured-card__cta"
+          >
+            {project.caseStudyLabel || 'View Case Study'}
+            <ArrowUpRight size={16} />
+          </a>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 const Projects = () => {
   return (
     <section id="projects" className="section">
@@ -237,6 +323,7 @@ const Projects = () => {
           and let&apos;s collaborate.
         </p>
 
+        {/* Single unified grid — all 4 projects */}
         <div className="projects-grid">
           {projects.map((project, i) => (
             <TiltCard key={project.id} project={project} index={i} />
