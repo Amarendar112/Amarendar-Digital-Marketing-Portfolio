@@ -6,8 +6,7 @@ const IntroVideo = () => {
   const videoRef = useRef(null);
 
   const [inView, setInView] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
 
   const mouseX = useMotionValue(0);
@@ -35,7 +34,7 @@ const IntroVideo = () => {
     return () => obs.disconnect();
   }, []);
 
-  // Sync muted state imperatively — React's `muted` prop doesn't update after mount
+  // Sync muted & volume with video DOM element
   useEffect(() => {
     const vid = videoRef.current;
     if (!vid) return;
@@ -43,20 +42,19 @@ const IntroVideo = () => {
     vid.volume = isMuted ? 0 : 1;
   }, [isMuted]);
 
+  // Autoplay video when in view
   useEffect(() => {
     const vid = videoRef.current;
     if (!vid) return;
-    if (inView && isHovered) {
+    if (inView) {
       vid.play().catch(() => {});
     } else {
       vid.pause();
       vid.currentTime = 0;
-      if (!inView) {
-        vid.muted = true;
-        vid.volume = 0;
-      }
+      vid.muted = true;
+      vid.volume = 0;
     }
-  }, [inView, isHovered]);
+  }, [inView]);
 
   const handleMouseMove = (e) => {
     if (!sectionRef.current) return;
@@ -65,28 +63,28 @@ const IntroVideo = () => {
     mouseY.set(e.clientY - (r.top + r.height / 2));
   };
 
-  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseEnter = () => {};
 
   const handleMouseLeave = () => {
-    setIsHovered(false);
     mouseX.set(0);
     mouseY.set(0);
   };
 
   const toggleSound = (e) => {
-    e.stopPropagation();
-    e.preventDefault();
+    if (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
     const vid = videoRef.current;
     if (!vid) return;
-    if (isMuted) {
-      vid.muted = false;
-      vid.volume = 1;
-      vid.play().catch(() => {});
-    } else {
-      vid.muted = true;
-      vid.volume = 0;
-    }
-    setIsMuted(prev => !prev);
+
+    const nextMuted = !isMuted;
+    setIsMuted(nextMuted);
+    vid.muted = nextMuted;
+    vid.volume = nextMuted ? 0 : 1;
+
+    // Explicitly play inside click event gesture
+    vid.play().catch((err) => console.log('Click play error:', err));
   };
 
   const tr = (d = 0) =>
@@ -195,7 +193,9 @@ const IntroVideo = () => {
                 clipPath: 'inset(0% round 4.8% / 9.8%)',
                 transform: 'translate3d(0, 0, 0)',
                 willChange: 'transform',
+                cursor: 'pointer',
               }}
+              onClick={toggleSound}
             >
               <video
                 ref={videoRef}
