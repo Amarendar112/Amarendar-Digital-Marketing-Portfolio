@@ -14,9 +14,9 @@ const projects = [
     title: 'Healthcare | Doctor UI',
     description:
       'Empowering healthcare with innovative and accessible interface design. The system prioritises trust and clarity to connect patients and doctors digitally.',
-    caseStudyLink: 'https://doctor-appointment-case-study.vercel.app/',
+    caseStudyLink: '/CuraConnect_Case_Study.html',
     caseStudyLabel: 'View Case Study',
-    link: 'https://www.behance.net/gallery/208451819/Empowering-Healthcare-Innovative-Doctor-UI-Design/modules/1184015719',
+    link: 'https://www.behance.net/gallery/208451819/Empowering-Healthcare-Innovative-Doctor-UI-Design',
     linkLabel: 'View Design',
     image: doctorUiImg,
     tag: 'UI Design',
@@ -26,7 +26,7 @@ const projects = [
     title: 'Quickslices Pizza App',
     description:
       'Quickslice: Order fresh, hot pizza and get it delivered fast with just a few taps.',
-    link: 'https://www.behance.net/gallery/218576355/Food-delivery/modules/1245613437',
+    link: 'https://www.behance.net/gallery/218576355/Food-delivery',
     linkLabel: 'View Design',
     image: quickslicesImg,
     tag: 'App Design',
