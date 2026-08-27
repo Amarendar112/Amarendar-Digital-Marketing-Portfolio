@@ -9,14 +9,16 @@ import d3 from '../assets/design-withamar2.png';
 import d4 from '../assets/design-withamar5.png';
 import d5 from '../assets/design-withamar6.png';
 import d6 from '../assets/design-untitled3.png';
+import d7 from '../assets/layyr-brand-preview.webp';
 
 const designs = [
-  { id: 1, src: d1, title: 'Healthcare | Doctor UI',                                          tag: 'UI Design'   },
-  { id: 2, src: d2, title: 'QuickSlices Pizza App',                                           tag: 'App Design'  },
-  { id: 3, src: d3, title: 'Zomato Redesign',                                                 tag: 'UI/UX'       },
-  { id: 4, src: d4, title: 'Trenzly',                                                         tag: 'Branding'    },
-  { id: 5, src: d5, title: 'Joe & Sera | Interior Design Studio',                             tag: 'Brand Design'},
-  { id: 6, src: d6, title: 'AI Dengue Detection Using CBC Data with Decision Tree Algorithm', tag: 'Research'    },
+  { id: 1, src: d1, title: 'Sturm Skincare Product UI',     tag: 'Product UI'          },
+  { id: 2, src: d2, title: 'Floral Apparel Ad Poster',       tag: 'Social Media Design' },
+  { id: 3, src: d3, title: '3D Portfolio Showcase Poster',  tag: '3D & Visual Design'  },
+  { id: 4, src: d4, title: 'Coca-Cola Ad Poster Concept',    tag: 'Brand Advertising'   },
+  { id: 5, src: d5, title: 'Delicious Pizza Poster',         tag: 'Food Poster Design'  },
+  { id: 6, src: d6, title: 'MuscleBlaze Protein Ad Poster',  tag: 'Fitness Brand Poster'},
+  { id: 7, src: d7, title: 'Layyr | Pre-Launch Poster Design', tag: 'Freelance Work'    },
 ];
 
 // Two copies — animate -50% for a perfectly seamless loop
@@ -54,7 +56,9 @@ const Lightbox = ({ designs, activeIndex, onClose, onNav }) => {
           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           onClick={(e) => e.stopPropagation()}
         >
-          <img src={design.src} alt={design.title} className="lb-img" />
+          <div className="lb-img-wrap">
+            <img src={design.src} alt={design.title} className="lb-img" />
+          </div>
           <div className="lb-caption">
             <span className="gd-tag">{design.tag}</span>
             <p className="lb-caption-title">{design.title}</p>

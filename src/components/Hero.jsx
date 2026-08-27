@@ -243,9 +243,9 @@ const Hero = () => {
 
   const isMobile = windowWidth < 768;
 
-  // Persistent Mobile Tap Interception
   useEffect(() => {
-    if (!containerRef.current) return;
+    const el = containerRef.current;
+    if (!el) return;
 
     const handleMouseLeaveEarly = (e) => {
       if (windowWidth < 768) {
@@ -257,14 +257,12 @@ const Hero = () => {
       }
     };
 
-    containerRef.current.addEventListener('mouseleave', handleMouseLeaveEarly, { capture: true });
-    containerRef.current.addEventListener('mouseout', handleMouseLeaveEarly, { capture: true });
+    el.addEventListener('mouseleave', handleMouseLeaveEarly, { capture: true });
+    el.addEventListener('mouseout', handleMouseLeaveEarly, { capture: true });
 
     return () => {
-      if (containerRef.current) {
-        containerRef.current.removeEventListener('mouseleave', handleMouseLeaveEarly, { capture: true });
-        containerRef.current.removeEventListener('mouseout', handleMouseLeaveEarly, { capture: true });
-      }
+      el.removeEventListener('mouseleave', handleMouseLeaveEarly, { capture: true });
+      el.removeEventListener('mouseout', handleMouseLeaveEarly, { capture: true });
     };
   }, [windowWidth]);
 

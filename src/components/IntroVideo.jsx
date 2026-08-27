@@ -51,8 +51,10 @@ const IntroVideo = () => {
     } else {
       vid.pause();
       vid.currentTime = 0;
-      // Only reset mute when video leaves the viewport entirely
-      if (!inView) setIsMuted(true);
+      if (!inView) {
+        vid.muted = true;
+        vid.volume = 0;
+      }
     }
   }, [inView, isHovered]);
 
