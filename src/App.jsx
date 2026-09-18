@@ -25,11 +25,11 @@ function App() {
         <Hero />
         <div className="gradient-line" />
         <Suspense fallback={<Fallback />}>
-          <GraphicDesigns />
+          <Projects />
         </Suspense>
         <div className="gradient-line" />
         <Suspense fallback={<Fallback />}>
-          <Projects />
+          <GraphicDesigns />
         </Suspense>
         <div className="gradient-line" />
         <Suspense fallback={<Fallback />}>

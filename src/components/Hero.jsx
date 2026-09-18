@@ -7,9 +7,9 @@ import IntroVideo from './IntroVideo';
    Replace src: null with your image path when ready.
    ─────────────────────────────────────────────────────────────────── */
 const CARD_PHOTOS = [
-  { id: 1, src: '/amar_speaking.webp', alt: 'Speaking at Event', color: '#1a1a2e' },
-  { id: 2, src: '/photo2.webp', alt: 'Photo 2', color: '#0f2318' },
   { id: 3, src: '/chargegrid_ai_hero.webp', alt: 'ChargeGrid AI', color: '#1a0f2e' },
+  { id: 2, src: '/photo2.webp', alt: 'Photo 2', color: '#0f2318' },
+  { id: 1, src: '/amar_speaking.webp', alt: 'Speaking at Event', color: '#1a1a2e' },
   { id: 4, src: '/drone_intelligence_ecosystem/screen.webp', alt: 'SkyGrid AI: Premium Food Delivery', color: '#2e1a0f' },
   { id: 5, src: '/medirescue_ai/screen.webp', alt: 'MediRescue AI: Emergency Response', color: '#0d1a1a' },
 ];
@@ -112,7 +112,7 @@ const ScatterCard = ({ photo, initial, index, isInView, isMobile, isSmallMobile 
 /* ─── Scattered Cards Section ─── */
 const ScatteredCardsSection = () => {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
+  const isInView = useInView(sectionRef, { once: true, margin: '0px' });
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
 
   useEffect(() => {
@@ -154,10 +154,21 @@ const ScatteredCardsSection = () => {
         {/* Left: Bio text */}
         <motion.div
           initial={{ opacity: 0, x: isMobile ? 0 : -40, y: isMobile ? 20 : 0 }}
-          animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
+          animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: isMobile ? 0 : -40, y: isMobile ? 20 : 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-          style={{ flex: '1 1 320px', maxWidth: isMobile ? '100%' : '480px' }}
+          style={{ flex: '1 1 320px', maxWidth: isMobile ? '100%' : '520px' }}
         >
+          <h3 style={{
+            fontFamily: "'Outfit', sans-serif",
+            fontSize: 'clamp(22px, 2.6vw, 36px)',
+            lineHeight: 1.1,
+            color: '#ffffff',
+            margin: '0 0 18px',
+            fontWeight: 600,
+            letterSpacing: '-0.03em',
+          }}>
+            Growing Brands Through Digital Marketing
+          </h3>
           <p style={{
             fontFamily: "'Inter', sans-serif",
             fontSize: 'clamp(15px, 1.6vw, 18px)',
@@ -165,13 +176,9 @@ const ScatteredCardsSection = () => {
             color: 'rgba(255,255,255,0.55)',
             margin: 0,
           }}>
-            Designing for real people and real impact. I've spent years
-            bridging the gap between user needs and business goals, crafting
-            digital experiences that feel intuitive and look stunning. Whether
-            working on a startup's first product or refining complex
-            design systems, my mission remains the same:{' '}
+            I help businesses build a stronger online presence through strategic SEO, digital advertising, social media, and AI-powered marketing. From increasing organic visibility to running targeted campaigns that reach the right audience, my focus is simple:{' '}
             <strong style={{ color: 'rgba(255,255,255,0.92)', fontWeight: 600 }}>
-              removing friction from every interaction that matters.
+              turning digital strategies into meaningful growth and measurable results.
             </strong>
           </p>
         </motion.div>
@@ -208,10 +215,19 @@ const ScatteredCardsSection = () => {
 
 /* ─── Main Hero ─── */
 const Hero = () => {
+  const roles = [
+    'Digital Marketing Executive',
+    'SEO Strategist',
+    'Performance Marketer',
+    'Growth Campaign Manager',
+    'AI Marketing Specialist',
+  ];
+
   const [isHovering, setIsHovering] = useState(false);
   const [revealed, setRevealed] = useState(false);
-  const [displayedText, setDisplayedText] = useState("");
+  const [displayedText, setDisplayedText] = useState(roles[0]);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [roleIndex, setRoleIndex] = useState(0);
   const [cursorVisible, setCursorVisible] = useState(true);
   const { x, y } = useMousePosition();
   const containerRef = useRef(null);
@@ -303,44 +319,44 @@ const Hero = () => {
   };
 
   useEffect(() => {
-    const fullText = "Graphic Designer";
-    const typeSpeed = 80;    // ms per character when typing
-    const deleteSpeed = 45;  // ms per character when deleting
-    const pauseAfterType = 1800;  // pause at full text
-    const pauseAfterDelete = 500; // pause when empty
+    const typeSpeed = 80;
+    const deleteSpeed = 45;
+    const pauseAfterType = 1800;
+    const pauseAfterDelete = 500;
 
+    const fullText = roles[roleIndex];
     let timeout;
+
     const tick = () => {
       setDisplayedText(prev => {
         if (!isDeleting) {
           if (prev.length < fullText.length) {
             timeout = setTimeout(tick, typeSpeed);
             return fullText.slice(0, prev.length + 1);
-          } else {
-            // Finished typing — pause then start deleting
-            timeout = setTimeout(() => {
-              setIsDeleting(true);
-            }, pauseAfterType);
-            return prev;
           }
-        } else {
-          if (prev.length > 0) {
-            timeout = setTimeout(tick, deleteSpeed);
-            return prev.slice(0, prev.length - 1);
-          } else {
-            // Finished deleting — pause then start typing
-            timeout = setTimeout(() => {
-              setIsDeleting(false);
-            }, pauseAfterDelete);
-            return prev;
-          }
+
+          timeout = setTimeout(() => {
+            setIsDeleting(true);
+          }, pauseAfterType);
+          return prev;
         }
+
+        if (prev.length > 0) {
+          timeout = setTimeout(tick, deleteSpeed);
+          return prev.slice(0, prev.length - 1);
+        }
+
+        timeout = setTimeout(() => {
+          setIsDeleting(false);
+          setRoleIndex(current => (current + 1) % roles.length);
+        }, pauseAfterDelete);
+        return prev;
       });
     };
 
     timeout = setTimeout(tick, typeSpeed);
     return () => clearTimeout(timeout);
-  }, [isDeleting]);
+  }, [isDeleting, roleIndex, roles]);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -372,19 +388,11 @@ const Hero = () => {
           position: 'relative', zIndex: 10, textAlign: 'center',
           padding: 'clamp(100px, 14vh, 140px) 32px 0', pointerEvents: 'none',
         }}>
-          <h1 style={{
-            fontFamily: "'Outfit', sans-serif",
-            fontSize: 'clamp(38px, 5.5vw, 72px)',
-            fontWeight: 400, color: '#ffffff', lineHeight: 1.1,
-            margin: 0, letterSpacing: '-0.02em',
-          }}>
-            Hi, I&apos;m <strong style={{ fontWeight: 800 }}>Jaalthari Amarendar</strong>
-          </h1>
           <p style={{
               fontFamily: "'Outfit', sans-serif",
-              fontSize: 'clamp(26px, 4.2vw, 48px)',
-              fontWeight: 600, color: '#4f8ef7', marginTop: '10px',
-              letterSpacing: '-0.01em', minHeight: '1.3em',
+              fontSize: 'clamp(18px, 3vw, 42px)',
+              fontWeight: 600, color: '#ff7a59', marginTop: '14px',
+              letterSpacing: '-0.02em', minHeight: '1.3em',
               display: 'inline-flex', alignItems: 'center', gap: '2px',
             }}
           >
@@ -394,7 +402,7 @@ const Hero = () => {
                 display: 'inline-block',
                 width: '3px',
                 height: '0.85em',
-                background: '#4f8ef7',
+                background: '#ff7a59',
                 borderRadius: '2px',
                 marginLeft: '2px',
                 animation: 'cursorBlink 0.75s step-end infinite',

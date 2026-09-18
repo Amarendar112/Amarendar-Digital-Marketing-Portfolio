@@ -10,6 +10,10 @@ import d4 from '../assets/design-withamar5.png';
 import d5 from '../assets/design-withamar6.png';
 import d6 from '../assets/design-untitled3.png';
 import d7 from '../assets/layyr-brand-preview.webp';
+import p1 from '../assets/product-design-work/6645b0867dfcf14cab22684a3bc7d7c1.jpg';
+import p2 from '../assets/product-design-work/70e2291cd28dc4da846dc1c20c0dce93.jpg';
+import p3 from '../assets/product-design-work/Visit Happi Mobiles.png';
+import p4 from '../assets/product-design-work/crcs.jpg';
 
 const designs = [
   { id: 1, src: d1, title: 'Sturm Skincare Product UI',     tag: 'Product UI'          },
@@ -19,6 +23,10 @@ const designs = [
   { id: 5, src: d5, title: 'Delicious Pizza Poster',         tag: 'Food Poster Design'  },
   { id: 6, src: d6, title: 'MuscleBlaze Protein Ad Poster',  tag: 'Fitness Brand Poster'},
   { id: 7, src: d7, title: 'Layyr | Pre-Launch Poster Design', tag: 'Freelance Work'    },
+  { id: 8, src: p1, title: 'Product Design Concept 01',    tag: 'Product Design'      },
+  { id: 9, src: p2, title: 'Product Design Concept 02',    tag: 'Product Design'      },
+  { id: 10, src: p3, title: 'Visit Happi Mobiles',         tag: 'Product Design'      },
+  { id: 11, src: p4, title: 'CRCS Product Visual',         tag: 'Product Design'      },
 ];
 
 // Two copies — animate -50% for a perfectly seamless loop

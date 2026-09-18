@@ -10,6 +10,36 @@ import dengueImg from '../assets/dengue-detection-preview.webp';
 
 const projects = [
   {
+    id: 'trenzly',
+    title: 'Trenzly',
+    description:
+      'A modern, fast, and customer-friendly e-commerce experience. Delivered a clean interface that boosted engagement and drove measurable sales growth for the client.',
+    link: 'https://digitalyelender.com/',
+    linkLabel: 'View Website',
+    image: trenzlyImg,
+    tag: 'E-Commerce',
+  },
+  {
+    id: 'jeo',
+    title: 'JEO',
+    description:
+      'A premium website for an interior design studio. Crafted an immersive digital experience that feels premium and smooth, directly reflecting the studio\'s high-end brand.',
+    link: 'https://joeandsera.com/',
+    linkLabel: 'View Website',
+    image: joeSeraImg,
+    tag: 'Web Design',
+  },
+  {
+    id: 'dengue-detection',
+    title: 'AI Dengue Detection Using CBC Data with Decision Tree Algorithm',
+    description:
+      'An AI-powered dengue detection system using CBC data and Decision Tree algorithms to predict positive or negative dengue cases with fast and accurate analysis',
+    link: 'https://dengue-detection-ai.onrender.com',
+    linkLabel: 'View Website',
+    image: dengueImg,
+    tag: 'AI & Healthcare',
+  },
+  {
     id: 'doctor-ui',
     title: 'Healthcare | Doctor UI',
     description:
@@ -40,36 +70,6 @@ const projects = [
     linkLabel: 'View Design',
     image: zomatoImg,
     tag: 'UX Design',
-  },
-  {
-    id: 'trenzly',
-    title: 'Trenzly',
-    description:
-      'A modern, fast, and customer-friendly e-commerce experience. Delivered a clean interface that boosted engagement and drove measurable sales growth for the client.',
-    link: 'https://digitalyelender.com/',
-    linkLabel: 'View Website',
-    image: trenzlyImg,
-    tag: 'E-Commerce',
-  },
-  {
-    id: 'joe-sera',
-    title: 'Joe & Sera | Interior Design Studio',
-    description:
-      'A premium website for an interior design studio. Crafted an immersive digital experience that feels premium and smooth, directly reflecting the studio\'s high-end brand.',
-    link: 'https://joeandsera.com/',
-    linkLabel: 'View Website',
-    image: joeSeraImg,
-    tag: 'Web Design',
-  },
-  {
-    id: 'dengue-detection',
-    title: 'AI Dengue Detection Using CBC Data with Decision Tree Algorithm',
-    description:
-      'An AI-powered dengue detection system using CBC data and Decision Tree algorithms to predict positive or negative dengue cases with fast and accurate analysis',
-    link: 'https://dengue-detection-ai.onrender.com',
-    linkLabel: 'View Website',
-    image: dengueImg,
-    tag: 'AI & Healthcare',
   },
 ];
 
@@ -141,7 +141,7 @@ const TiltCard = ({ project, index }) => {
       custom={index}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '-60px' }}
+      viewport={{ once: true, margin: '0px' }}
       variants={cardVariants}
       className={`project-card ${hovered ? 'is-hovered' : ''}`}
       ref={cardRef}
@@ -229,7 +229,7 @@ const FeaturedCard = ({ project }) => {
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
+      viewport={{ once: true, margin: '0px' }}
       transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
       className={`featured-card ${hovered ? 'is-hovered' : ''}`}
       onMouseEnter={() => setHovered(true)}
@@ -311,9 +311,9 @@ const Projects = () => {
     <section id="projects" className="section">
       <div className="container">
         <div className="section-label">Projects</div>
-        <h2 className="section-title">Projects you need to see</h2>
+        <h2 className="section-title">Freelance Projects That Deliver Results</h2>
         <p className="section-subtitle">
-          Turning ideas into stunning digital experiences with creativity and precision.
+          Helping businesses grow through SEO, digital advertising, and AI-powered marketing strategies.
         </p>
         <p className="section-note">
           Let&apos;s turn your ideas into reality.{' '}

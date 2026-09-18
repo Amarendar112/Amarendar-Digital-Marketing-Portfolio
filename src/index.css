@@ -10,17 +10,17 @@
 }
 
 :root {
-  --bg: #080808;
-  --bg-card: #111111;
-  --bg-card-hover: #161616;
+  --bg: #070b11;
+  --bg-card: #101827;
+  --bg-card-hover: #171f2d;
   --border: rgba(255,255,255,0.08);
   --border-hover: rgba(255,255,255,0.18);
-  --text-primary: #f0f0f0;
-  --text-secondary: #8a8a8a;
-  --text-muted: #555;
-  --accent: #7c6aff;
-  --accent-2: #ff6b6b;
-  --accent-3: #00d4aa;
+  --text-primary: #f3f5f8;
+  --text-secondary: #b0b7c3;
+  --text-muted: #6a7280;
+  --accent: #ff7a59;
+  --accent-2: #3aa5ff;
+  --accent-3: #68e0a3;
   --white: #ffffff;
   --font-display: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
@@ -39,7 +39,10 @@ html {
 }
 
 body {
-  background-color: var(--bg);
+  background:
+    radial-gradient(circle at top, rgba(58, 165, 255, 0.12), transparent 28%),
+    radial-gradient(circle at right, rgba(255, 122, 89, 0.10), transparent 24%),
+    var(--bg);
   color: var(--text-primary);
   font-family: var(--font-body);
   line-height: 1.6;
@@ -1279,7 +1282,7 @@ video::-webkit-media-controls-start-playback-button {
   display: flex;
   gap: 20px;
   width: max-content;
-  animation: gd-scroll 40s linear infinite;
+  animation: gd-scroll 28s linear infinite;
   will-change: transform;
   padding: 8px 0;
 }

@@ -373,13 +373,6 @@ const BeyondPixels = () => {
         <ImageCard src="/f1_passion.webp" label="F1 passion" rotation={-6} width={imgW} height={imgH} />
       </PositionedCard>
 
-      {/* LEFT-UPPER: UX Day */}
-      <PositionedCard style={{ top: isMobile ? '26%' : '20%', left: isMobile ? '1%' : '4%' }} zIndex={11} onDragStart={handleFirstDrag}>
-        <ImageCard src="/ux_day.webp" label="ux day" rotation={4}
-          width={isSmall ? 88 : isMobile ? 105 : 138}
-          height={isSmall ? 72 : isMobile ? 88 : 112} />
-      </PositionedCard>
-
       {/* LEFT-MID: Frame boy illustration */}
       <PositionedCard style={{ top: '48%', left: isMobile ? '-2%' : '0%' }} zIndex={12} onDragStart={handleFirstDrag}>
         <ImageCard src="/frame_boy_2.webp" rotation={-5}

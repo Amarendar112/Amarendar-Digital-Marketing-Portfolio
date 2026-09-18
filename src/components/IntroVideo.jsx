@@ -27,8 +27,13 @@ const IntroVideo = () => {
     const el = sectionRef.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.15 }
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          obs.disconnect(); // once: true behavior
+        }
+      },
+      { threshold: 0.05 }
     );
     obs.observe(el);
     return () => obs.disconnect();
