@@ -5,27 +5,28 @@ import { Minus, Plus } from 'lucide-react';
 const chatFaqs = [
   {
     id: 'faq-1',
-    q: 'Can design really change how people use technology?',
-    a: "Absolutely. I focus on creating interfaces that feel simple, intuitive, and visually engaging. Good UX removes confusion and improves user experience naturally.",
-    emoji: { icon: '💖', top: '-10px', right: '40px', delay: 0 },
+    q: 'Can digital marketing really drive measurable business growth?',
+    a: "Absolutely. Through strategic SEO, targeted ad campaigns, and data-driven content, I help brands increase their organic visibility, attract the right audience, and convert traffic into real revenue.",
+    emoji: { icon: '📈', top: '-10px', right: '40px', delay: 0 },
   },
   {
     id: 'faq-2',
-    q: "What kind of products do you design?",
-    a: "I enjoy designing AI-driven healthcare projects, mobile apps, and modern web experiences with strong visual storytelling and smooth interactions.",
+    q: "What kind of businesses do you work with?",
+    a: "I work with startups, e-commerce brands, and growing businesses across various industries. Whether it's building an online presence from scratch or scaling existing campaigns, I tailor strategies to each brand's unique goals.",
   },
   {
     id: 'faq-3',
-    q: 'What makes your work different?',
-    a: "I combine UI/UX design with technical understanding in Python Full Stack and AI systems, which helps me create designs that are both creative and practical.",
+    q: 'What makes your marketing approach different?',
+    a: "I combine data analytics with creative storytelling. I don't just run ads — I build full-funnel strategies that cover SEO, paid media, social, and AI-powered marketing tools to deliver consistent, long-term growth.",
   },
   {
     id: 'faq-4',
-    q: 'Why combine design with technical skills?',
-    a: "Because understanding both design and development helps me build realistic, scalable, and developer-friendly product experiences.",
+    q: 'Why does AI matter in digital marketing today?',
+    a: "AI allows us to automate targeting, personalise content at scale, and make smarter decisions faster. I integrate AI tools into marketing workflows to give brands a competitive edge and better ROI.",
     emoji: { icon: '⭐', top: '50%', left: '-18px', transform: 'translateY(-50%)', delay: 0 }
   },
 ];
+
 
 const ChatItem = ({ item }) => {
   const [isOpen, setIsOpen] = useState(false);
