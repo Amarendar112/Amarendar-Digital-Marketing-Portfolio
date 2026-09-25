@@ -35,7 +35,7 @@ const Navbar = () => {
       </div>
       <a
         id="nav-resume"
-        href="/Amarendar_GraphicDesign_Resume.pdf"
+        href="/Amarendar_DigitalMarketing_Resume.pdf"
         target="_blank"
         rel="noopener noreferrer"
         className="navbar__resume"

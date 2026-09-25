@@ -47,6 +47,14 @@ const IntroVideo = () => {
     vid.volume = isMuted ? 0 : 1;
   }, [isMuted]);
 
+  // Initialise muted on mount
+  useEffect(() => {
+    const vid = videoRef.current;
+    if (!vid) return;
+    vid.muted = true;
+    vid.volume = 0;
+  }, []);
+
   // Autoplay video when in view
   useEffect(() => {
     const vid = videoRef.current;
@@ -55,9 +63,6 @@ const IntroVideo = () => {
       vid.play().catch(() => {});
     } else {
       vid.pause();
-      vid.currentTime = 0;
-      vid.muted = true;
-      vid.volume = 0;
     }
   }, [inView]);
 
@@ -206,7 +211,6 @@ const IntroVideo = () => {
                 ref={videoRef}
                 src="/intro_video.mp4"
                 loop
-                muted
                 controls={false}
                 playsInline
                 preload="auto"
